@@ -1,24 +1,30 @@
 import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Header } from "./componants/header";
+import { Sessions } from "./componants/sessions/Sessions";
+import { Students } from "./componants/Students";
+import { NoPage } from "./componants/NoPage";
 
-function App() {
+import { Stats } from "./componants/Stats";
+import { Bills } from "./componants/Bills";
+import { MainNav } from "./componants/mainNav";
+
+const App = function () {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<MainNav />}>
+              <Route path="sessions" element={<Sessions />} />
+              <Route path="students" element={<Students />} />
+              <Route path="bills" element={<Bills />} />
+              <Route path="stats" element={<Stats />} />
+              <Route path="*" element={<NoPage />} />
+            </Route>
+          </Routes>
+        </main>
+    </Router>
   );
 }
 
